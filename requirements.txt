@@ -1,2 +1,2 @@
-flask
-spotdl
+Flask==2.0.3
+spotdl==5.1.0
