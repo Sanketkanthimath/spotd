@@ -29,7 +29,12 @@ def download():
 
 @app.route('/downloads/<filename>')
 def download_file(filename):
-    return send_from_directory(DOWNLOAD_FOLDER, filename)
+    file_path = os.path.join(DOWNLOAD_FOLDER, filename)
+    
+    # Check if the file exists before attempting to serve it
+    if os.path.exists(file_path):
+        return send_from_directory(DOWNLOAD_FOLDER, filename, as_attachment=True)
+    return "File not found", 404
 
 if __name__ == '__main__':
     app.run(debug=True)
